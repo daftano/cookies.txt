@@ -4,32 +4,41 @@ chrome.tabs.getSelected(null, function(tab) {
   //console.log("domain=["+domain+"]")
   chrome.cookies.getAll({}, function(cookies) {
     document.write("<pre>\n");    
-    document.write("# Cookies for domains related to <b>" + domain + "</b>.\n");
+    document.write("# Cookies for domains related to <b>" + escapeForPre(domain) + "</b>.\n");
     document.write("# This content may be pasted into a cookies.txt file and used by wget\n");
-    document.write("# Example:  wget -x <b>--load-cookies cookies.txt</b> " + tab.url + "\n"); 
+    document.write("# Example:  wget -x <b>--load-cookies cookies.txt</b> " + escapeForPre(tab.url) + "\n"); 
     document.write("#\n");
     for (var i in cookies) {
       cookie = cookies[i]; 
       if (cookie.domain.indexOf(domain) != -1) {     
-      document.write(cookie.domain);
+      document.write(escapeForPre(cookie.domain));
       document.write("\t");
-      document.write((!cookie.hostOnly).toString().toUpperCase());
+      document.write(escapeForPre((!cookie.hostOnly).toString().toUpperCase()));
       document.write("\t");     
-      document.write(cookie.path); 
+      document.write(escapeForPre(cookie.path)); 
       document.write("\t");     
-      document.write(cookie.secure.toString().toUpperCase());
+      document.write(escapeForPre(cookie.secure.toString().toUpperCase()));
       document.write("\t");     
-      document.write(cookie.expirationDate ? cookie.expirationDate : "0");
+      document.write(escapeForPre(cookie.expirationDate ? cookie.expirationDate : "0"));
       document.write("\t");     
-      document.write(cookie.name);
+      document.write(escapeForPre(cookie.name));
       document.write("\t");     
-      document.write(cookie.value);
+      document.write(escapeForPre(cookie.value));
       document.write("\n");                      
       }
     }
     document.write("</pre>");
   });      
 })
+
+function escapeForPre(text)
+{
+  return String(text).replace(/&/g, "&amp;")
+                     .replace(/</g, "&lt;")
+                     .replace(/>/g, "&gt;")
+                     .replace(/"/g, "&quot;")
+                     .replace(/'/g, "&#039;");
+}
 
 function getDomain(url)
 {
