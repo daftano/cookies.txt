@@ -48,16 +48,36 @@ function getDomain(url)
   parts = server.split(".");
   //console.log("parts=["+parts+"]")
 
-  isip = !isNaN(parseInt(server.replace(".",""),10))
+  isip = !isNaN(parseInt(server.replace(".",""),10));
   //console.log("parts=["+isip+"]")
 
-  if (parts.length == 1 || isip)
+  if (parts.length <= 1 || isip)
   {
-    domain = server
+    domain = server;
   }
   else
   {
-  	domain = parts[parts.length - 2] + "." + parts[parts.length -1];	
+    //search second level domain suffixes
+    var domains = new Array();
+    domains[0] = parts[parts.length-1];
+    //assert(parts.length > 1)
+    for(i=1;i<parts.length;i++)
+    {
+      domains[i] = parts[parts.length-i-1] + "." + domains[i-1];
+      //console.log("domains=["+domains[i]+"]");
+      //domainlist defines in domain_list.js 
+      if (!domainlist.hasOwnProperty(domains[i]))
+      {
+        domain = domains[i];
+        //console.log("found "+domain);
+        break;
+      }
+    }
+
+    if (typeof(domain) == "undefined") 
+    { 
+      domain = server;
+    }
   }
   
   return domain;
