@@ -1,6 +1,7 @@
 // See http://www.cookiecentral.com/faq/#3.5
 chrome.tabs.getSelected(null, function(tab) {
   domain = getDomain(tab.url)  
+  //console.log("domain=["+domain+"]")
   chrome.cookies.getAll({}, function(cookies) {
     document.write("<pre>\n");    
     document.write("# Cookies for domains related to <b>" + domain + "</b>.\n");
@@ -32,8 +33,23 @@ chrome.tabs.getSelected(null, function(tab) {
 
 function getDomain(url)
 {
+  //console.log("url=["+url+"]")
   server = url.match(/:\/\/(.[^/:#?]+)/)[1];
+  //console.log("server=["+server+"]")
   parts = server.split(".");
-  domain = parts[parts.length - 2] + "." + parts[parts.length -1];
+  //console.log("parts=["+parts+"]")
+
+  isip = !isNaN(parseInt(server.replace(".",""),10))
+  //console.log("parts=["+isip+"]")
+
+  if (parts.length == 1 || isip)
+  {
+    domain = server
+  }
+  else
+  {
+  	domain = parts[parts.length - 2] + "." + parts[parts.length -1];	
+  }
+  
   return domain;
 }
