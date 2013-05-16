@@ -1,10 +1,11 @@
 {
+  "manifest_version": 2,
   "name": "cookie.txt export",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Exports cookie data in a format that can be used by wget",
   "permissions": [ "cookies", "tabs", "http://*/*", "https://*/*" ],
   "browser_action": {
     "default_icon": "icon.png",
-    "popup": "popup.html"
+    "default_popup": "popup.html"
   }  
 }
