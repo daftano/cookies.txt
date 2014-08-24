@@ -4,7 +4,7 @@ chrome.tabs.getSelected(null, function(tab) {
   //console.log("domain=["+domain+"]")
   chrome.cookies.getAll({}, function(cookies) {
     document.write("<pre>\n");    
-    document.write("# Cookies for domains related to <b>" + escapeForPre(domain) + "</b>.\n");
+    document.write("# HTTP Cookie File for domains related to <b>" + escapeForPre(domain) + "</b>.\n");
     document.write("# This content may be pasted into a cookies.txt file and used by wget\n");
     document.write("# Example:  wget -x <b>--load-cookies cookies.txt</b> " + escapeForPre(tab.url) + "\n"); 
     document.write("#\n");
