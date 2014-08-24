@@ -1,9 +1,11 @@
-"""genreate domain_list.js from http://mxr.mozilla.org/mozilla-central/source/netwerk/dns/effective_tld_names.dat?raw=1
-save that to file effective_tld_names.dat.txt and run this
-"""
+import urllib
+url = "https://publicsuffix.org/list/effective_tld_names.dat?raw=1"
+tld_names = "effective_tld_names.dat"
+domain_list = "../domain_list.js"
+response = urllib.urlretrieve(url, tld_names)
 
-fd = open("effective_tld_names.dat.txt","r")
-wd = open("domain_list.js","w")
+fd = open(tld_names,"r")
+wd = open(domain_list,"w")
 wd.write("var domainlist = {\n")
 
 for line in fd:
