@@ -8,6 +8,8 @@ chrome.tabs.getSelected(null, function(tab) {
     document.write("# This content may be pasted into a cookies.txt file and used by wget\n");
     document.write("# Example:  wget -x <b>--load-cookies cookies.txt</b> " + escapeForPre(tab.url) + "\n"); 
     document.write("#\n");
+    document.write("# domain \t hostOnly \t path \t secure \t expirationDate \t name \t value\n");
+    document.write("#\n");
     for (var i in cookies) {
       cookie = cookies[i]; 
       if (cookie.domain.indexOf(domain) != -1) {     
