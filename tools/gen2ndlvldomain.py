@@ -1,7 +1,7 @@
 import urllib
 url = "https://publicsuffix.org/list/effective_tld_names.dat?raw=1"
 tld_names = "effective_tld_names.dat"
-domain_list = "../domain_list.js"
+domain_list = "../src/domain_list.js"
 response = urllib.urlretrieve(url, tld_names)
 
 fd = open(tld_names,"r")
