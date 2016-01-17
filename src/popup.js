@@ -17,7 +17,7 @@ chrome.tabs.getSelected(null, function(tab) {
       content += "\t";     
       content += escapeForPre(cookie.secure.toString().toUpperCase());
       content += "\t";     
-      content += escapeForPre(cookie.expirationDate ? cookie.expirationDate : "0");
+      content += escapeForPre(cookie.expirationDate ? Math.round(cookie.expirationDate) : "0");
       content += "\t";     
       content += escapeForPre(cookie.name);
       content += "\t";     
