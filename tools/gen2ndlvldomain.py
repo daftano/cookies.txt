@@ -13,6 +13,6 @@ for line in fd:
 	if len(line) > 1 and not line.startswith("//"):
 		wd.write("\t\""+line+"\":1,\n")
 
-wd.write("}\n")
+wd.write("};\n")
 fd.close()
 wd.close()
