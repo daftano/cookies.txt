@@ -1,10 +1,15 @@
 {
   "manifest_version": 2,
-  "name": "cookie.txt export",
-  "version": "1.1",
-  "description": "Exports cookie data in a format that can be used by wget",
-  "permissions": [ "cookies", "tabs", "http://*/*", "https://*/*" ],
+  "name": "cookie.txt",
+  "version": "1.9",
+  "description": "Exports your cookies super fast in a format compatible with wget",
+  "short_name": "cookies",
+  "offline_enabled": true,
+    
+  "permissions": [ "activeTab", "cookies", "tabs", "webNavigation", "http://*/*", "https://*/*"],
+  
   "browser_action": {
+    "default_title": "Export cookies.txt",
     "default_icon": "icon.png",
     "default_popup": "popup.html"
   }  
